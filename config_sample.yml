@@ -1,0 +1,19 @@
+bot_token: ''
+# This has to be an integer. Read more [here](https://core.telegram.org/api/obtaining_api_id)
+api_id:
+# Long 32 characters hash identifier. Read more [here](https://core.telegram.org/api/obtaining_api_id)
+api_hash: ''
+
+# chatrooms where this bot is allowed
+chatrooms: ''
+
+# Session name. Only one session (with a unique session name) can run at a time
+session_name: 'ob_bot'
+
+# open exchange rates id
+oxr_id: ''
+
+# for admin restricted commands
+admins: 
+- admin1
+- admin2
