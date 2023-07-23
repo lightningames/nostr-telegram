@@ -2,12 +2,9 @@ from telethon import TelegramClient, events
 import yaml
 import logging
 import random
-from pyjokes import pyjokes
 from dbtools import add_doc, find_all_offers, delete_alldocs_by_user, delete_entry, parse_offers
 import datetime as dt
 from coingecko_ticker import get_btcrates, sats2btcTable, sats_convert
-from blockstream import get_height
-from constants import core_currency
 import aiocron
 
 import os
@@ -24,10 +21,6 @@ bot_commands = ["<b>/all</b> \t\t - List Open Offers. \n",
                 "<b>/del</b> \t\t - Delete an offer. Ex: /del [offer_number]\n",
                 "<b>/rates</b> \t\t - Get latest BTC to Fiat Rates from Coingecko\n",
                 "<b>/table</b> \t\t - Sats to BTC conversion table\n",
-                "<b>/btc</b> \t\t - /btc 0.04 USD,  btc 2 fiat converter \n" 
-                "<b>/sats</b> \t\t - ex. /sats 100 "+ core_currency + ", converts sats to fiat\n",
-                "<b>/fiat</b> \t\t - ex. /fiat 100 " + core_currency + ", converts fiat to sats\n",
-                "<b>/joke</b> \t\t - Forces me to tell a joke. For the love of God just don\'t. \n",
                 "<b>/helpme</b> \t\t - Prints this list. \n\n"]
 
             
@@ -66,18 +59,6 @@ client.parse_mode = 'html'
 
 admin_list = config['admins']
 print(f'Admin List : {admin_list}')
-
-def tell_joke():
-    observations = ["It didn't work for me. . .", "I am so sorry.",
-                    "I'll be in my room trying to purge my memory banks.",
-                    "Why must you keep making me do this?",
-                    "This is your fault.",
-                    "I've made it worse. . ."]
-    joke = ""
-    joke += "I hope this cheers you up.\n\n"
-    joke += "<b>"+pyjokes.get_joke()+"</b>"
-    joke += f"\n\n{random.choice(observations)}"
-    return joke
 
 
 def add_offer(input, username):
@@ -204,19 +185,19 @@ async def handler(event):
         await event.reply(msg)
         return 1
 
-    if '/all' in rawtext:
-        msg = get_all_offers()
-        await event.reply(msg)
-
     if '/helpme' in rawtext:
         await event.reply(intro)
-        
+
     if '/rates' in rawtext:
         msg = get_btcrates()
         await event.reply(msg)
     
     if '/table' in rawtext:
         msg = sats2btcTable()
+        await event.reply(msg)
+
+    if '/all' in rawtext:
+        msg = get_all_offers()
         await event.reply(msg)
 
     if '/btc' in rawtext:
@@ -231,10 +212,7 @@ async def handler(event):
         msg = sats_convert(rawtext)
         await event.reply(msg) 
 
-    if '/joke' in rawtext:
-        msg = tell_joke()
-        await event.reply(msg)
-    elif '/add' in rawtext:
+    if '/add' in rawtext:
         msg = add_offer(rawtext, username)
         await event.reply(msg)
     elif '/del' in rawtext:
@@ -267,7 +245,6 @@ async def attime():
         msg += get_all_offers() + "\n"
         msg += get_btcrates()
         msg += "Auto rate update every 12 hours.\n\n"
-        msg += "BLOCK: " + str(get_height()) + "\n"
         msg += "PRICE: " + str(sats) + " per USD \n\n"
         msg += "\n<b> This bot haz more goodies! visit /helpme </b>\n"
         await client.send_message(allowed_chatrooms, msg)

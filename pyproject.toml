@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "nostr-telegram"
+version = "0.1.0"
+description = ""
+authors = ["bitkarrot <73979971+bitkarrot@users.noreply.github.com>"]
+license = "MIT"
+readme = "README.md"
+packages = [{include = "nostr_telegram"}]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+telethon = "^1.28.5"
+nostr = {git = "https://github.com/lightningames/python-nostr.git", rev = "main"}
+pymongo = "^4.4.1"
+pyyaml = "^6.0.1"
+aiocron = "^1.8"
+pyaml-env = "^1.2.1"
+pycoingecko = "^3.1.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
