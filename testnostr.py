@@ -5,6 +5,7 @@ from nostr.filter import Filter, Filters
 from nostr.event import Event, EventKind
 from nostr.relay_manager import RelayManager
 from nostr.message_type import ClientMessageType
+from nostr.key import PrivateKey
 
 # To try this channel visit
 # https://www.nostrchat.io/channel/09f6099a502bd0204949e3b2e48bd30ae2f1712e5d15231ed7f6f8daae4c5b97
@@ -31,7 +32,7 @@ currentrelay = chatrelay
 #nostr_authors = ["npub18pudjhdhhp2v8gxnkttt00um729nv93tuepjda2jrwn3eua5tf5s80a699"]
 
 # Modified Event kinds in python-nostr fork, on lightningames repo only
-# the parent repo is not up to date with all Nostr Kinds
+# the parent repo is not up to date with all Nostr Kinds and docs are out of date as well.
 
 # Nostr Kinds supported on lightningames fork:
     # SET_METADATA = 0
@@ -60,14 +61,23 @@ filters = Filters([  # enter filter condition
 ])
 subscription_id = 'poiuoupuopiou87987987'  # any string as per NIP-01 subscription
 
-request = [ClientMessageType.REQUEST, subscription_id]
-request.extend(filters.to_json_array())
-
 relay_manager = RelayManager()
 relay_manager.add_relay(currentrelay)
 relay_manager.add_subscription_on_relay(currentrelay, subscription_id, filters)
-#relay_manager.open_connections({"cert_reqs": ssl.CERT_NONE}) # NOTE: This disables ssl certificate verification
 time.sleep(1.25) # allow the connections to open
+print("-- end initialize relay manager --")
+
+request = [ClientMessageType.REQUEST, subscription_id]
+request.extend(filters.to_json_array())
+message = json.dumps(request)
+print("message", message)
+
+private_key = PrivateKey()
+event = Event(content="Hello Nostr")
+private_key.sign_event(event)
+relay_manager.publish_event(event)
+time.sleep(1) # allow the messages to send
+
 
 print("--- End setting up relay manager ---")
 

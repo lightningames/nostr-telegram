@@ -26,7 +26,9 @@ namely:
 - [NIP-28](https://github.com/nostr-protocol/nips/blob/master/28.md)
 
 
-Nostr python library - [python-nostr](https://github.com/jeffthibault/python-nostr)
+Nostr python library, this isn't really up to date, so it needs a pretty hard refactor
+There is an aiohttp library but will need to investigate
+- [python-nostr](https://github.com/jeffthibault/python-nostr)
 
 
 ## TODO LIST: 
