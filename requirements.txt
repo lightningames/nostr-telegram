@@ -26,4 +26,4 @@ urllib3==2.0.2
 pyaml-env==1.2.1
 pyjokes==0.6.0
 pyaml_env==1.2.1
-git+https://github.com/lightningames/python-nostr.git@main
+aionostr

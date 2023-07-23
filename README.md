@@ -26,26 +26,20 @@ namely:
 - [NIP-28](https://github.com/nostr-protocol/nips/blob/master/28.md)
 
 
-Nostr python library, this isn't really up to date, so it needs a pretty hard refactor
-There is an aiohttp library but will need to investigate, this is currently a super rough implementation but is more basic and does not require aiohttp and async knowledge.
-
-- Parent library is [python-nostr](https://github.com/jeffthibault/python-nostr)
-- However, we are using the forked version that is modified and updated at [lightingames/python-nostr](https://github.com/lightningames/python-nostr)
+Lets try using the Aionostr library: 
+https://github.com/davestgermain/aionostr
 
 
 ## TODO LIST: 
 
 - trim down requirements.txt (partly done)
-- remove unused artifacts from bot template (done)
+- remove unused artifacts from bot template (partly done)
 - use poetry for project setup (done)
 - testnostr.py, get events from a nostr chat relay (done)
 
-- refactor python-nostr to update it properly for group chat Kinds
-- refactor to make python-nostr work with aiohttp
 - write class for handling all nostr client activity
 - write unit tests for nostr connections class
 
-- Interop Base Case
 - Basic Case to read events from nostr chat relay, post to telegram room
 - Basic Case to read from telegram chatroom, post to nostr chat. 
 
@@ -54,3 +48,12 @@ There is an aiohttp library but will need to investigate, this is currently a su
 - admin controls for rooms
 - Allow reply to messages in telegram from nostr
 - Allow reply to messages in nostr from telegram
+
+## Archival Notes
+
+We tested python-nostr, this library is not up to date and neither are the docs. 
+We do not recommend using this library. 
+
+- Parent library is [python-nostr](https://github.com/jeffthibault/python-nostr)
+- However, we are using the forked version that is modified and updated at [lightingames/python-nostr](https://github.com/lightningames/python-nostr)
+
