@@ -27,8 +27,10 @@ namely:
 
 
 Nostr python library, this isn't really up to date, so it needs a pretty hard refactor
-There is an aiohttp library but will need to investigate
-- [python-nostr](https://github.com/jeffthibault/python-nostr)
+There is an aiohttp library but will need to investigate, this is currently a super rough implementation but is more basic and does not require aiohttp and async knowledge.
+
+- Parent library is [python-nostr](https://github.com/jeffthibault/python-nostr)
+- However, we are using the forked version that is modified and updated at [lightingames/python-nostr](https://github.com/lightningames/python-nostr)
 
 
 ## TODO LIST: 
