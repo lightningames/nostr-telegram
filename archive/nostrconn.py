@@ -1,3 +1,5 @@
+## DEPRECATED
+
 from nostr.key import PrivateKey
 from nostr.relay_manager import RelayManager
 from nostr.event import Event, EventKind
