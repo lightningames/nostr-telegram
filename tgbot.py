@@ -25,7 +25,7 @@ bot_commands = ["<b>/all</b> \t\t - List Open Offers. \n",
 
             
 cmds = "".join(bot_commands)
-help_msg += "Here are my  commands: \n\n" + cmds
+help_msg = "Here are my commands: \n\n" + cmds
 header_msg = '<b>Nostr-Telegram Bridge Bot</b>\n\n'
 intro = header_msg + help_msg
 
