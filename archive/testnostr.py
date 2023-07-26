@@ -1,8 +1,11 @@
+## DEPRECATED DO NOT USE
+
 import json
 import ssl
 import time
 from nostr.filter import Filter, Filters
 from nostr.event import Event, EventKind
+
 from nostr.relay_manager import RelayManager
 from nostr.message_type import ClientMessageType
 from nostr.key import PrivateKey
