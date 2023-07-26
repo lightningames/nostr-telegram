@@ -25,9 +25,8 @@ bot_commands = ["<b>/all</b> \t\t - List Open Offers. \n",
 
             
 cmds = "".join(bot_commands)
-help_msg = "For trader reviews, please visit https://t.me/bitpoint_reviews\n\n"
-help_msg += "Here are the commands I currently am enslaved to: \n\n" + cmds
-header_msg = '<b>Satstorm Orderbook</b>\n\n'
+help_msg += "Here are my  commands: \n\n" + cmds
+header_msg = '<b>Nostr-Telegram Bridge Bot</b>\n\n'
 intro = header_msg + help_msg
 
 path  = "./"
@@ -199,19 +198,7 @@ async def handler(event):
     if '/all' in rawtext:
         msg = get_all_offers()
         await event.reply(msg)
-
-    if '/btc' in rawtext:
-        msg = sats_convert(rawtext)
-        await event.reply(msg)
-        
-    if '/sats' in rawtext:
-        msg = sats_convert(rawtext)
-        await event.reply(msg)
-      
-    if '/fiat' in rawtext:
-        msg = sats_convert(rawtext)
-        await event.reply(msg) 
-
+ 
     if '/add' in rawtext:
         msg = add_offer(rawtext, username)
         await event.reply(msg)
@@ -231,23 +218,6 @@ async def handler(event):
         await event.reply(msg)
     elif '/adminlist' in rawtext:
         await event.reply(str(config['admins']))
-
-
-#### cron job ####
-# @aiocron.crontab('* * * * *')
-@aiocron.crontab('0 0/12 * * *')
-# “At minute 0 past every 0/12 hour.”
-async def attime():
-        command = '/fiat 1 USD'
-        dollar = sats_convert(command)
-        sats = dollar.split("or")[1].strip()
-        msg = "<b>Welcome friends!</b>\n\n"
-        msg += get_all_offers() + "\n"
-        msg += get_btcrates()
-        msg += "Auto rate update every 12 hours.\n\n"
-        msg += "PRICE: " + str(sats) + " per USD \n\n"
-        msg += "\n<b> This bot haz more goodies! visit /helpme </b>\n"
-        await client.send_message(allowed_chatrooms, msg)
 
     
 #### start bot ####
