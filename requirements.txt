@@ -22,7 +22,7 @@ Telethon==1.28.5
 typing==3.7.4.1
 tzlocal==5.0.1
 ujson==5.7.0
-urllib3==2.0.2
+urllib3==2.0.6
 pyaml-env==1.2.1
 pyjokes==0.6.0
 pyaml_env==1.2.1
